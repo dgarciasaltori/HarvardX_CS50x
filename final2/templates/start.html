@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content%}
+
+<h2>Welcome to my Tic Tac Toe game!</h2>
+
+<div id="names">
+    <label for="xname"><img src="https://freetictactoe.com/images/mark-x.png"/>'s name: </label>
+    <input type="text" id="xname" name="fname" placeholder="Your name.."><br><br>
+    <label for="oname"><img src="https://freetictactoe.com/images/mark-o.png"/>'s name: </label>
+    <input type="text" id="oname" name="fname" placeholder="Your partner name.."><br><br>
+    <h5>If you choose a game against the computer, write only your name</h5>
+</div>
+
+<div id="buttons">
+    <button class="button" onclick="startGame()">Single Player</button>
+    <button class="button" onclick="createMultiplayer()">Multiplayer</button>
+    <a href="/scores"><button class="button">View Scores</button></a>
+</div>
+
+<div id="buttons">
+<button class="button" onclick="computer()">Against the computer</button>
+</div>
+
+
+
+<script>
+
+function createMultiplayer() {
+    if(!document.getElementById("xname").value || !document.getElementById("oname").value)
+    {
+        alert("empty xname or oname")
+        document.getElementById("xname").value = ""
+        document.getElementById("oname").value = ""
+    }
+    else { // Go to /game
+        var xname = document.getElementById("xname").value
+        var oname = document.getElementById("oname").value
+        window.location.assign("/createMultiplayer?X=" + xname + "&O=" + oname)
+    }
+}
+
+function startGame() {
+    if(!document.getElementById("xname").value || !document.getElementById("oname").value)
+    {
+        alert("empty xname or oname")
+        document.getElementById("xname").value = ""
+        document.getElementById("oname").value = ""
+    }
+    else { // Go to /game
+        var xname = document.getElementById("xname").value
+        var oname = document.getElementById("oname").value
+        window.location.assign("/game?X=" + xname + "&O=" + oname)
+    }
+}
+function computer() {
+    if(!document.getElementById("xname").value)
+    {
+        alert("empty xname")
+        document.getElementById("xname").value = ""
+        document.getElementById("oname").value = ""
+    }
+    else { // Go to /game
+        var xname = document.getElementById("xname").value
+        var oname = "computer"
+        window.location.assign("/game?X=" + xname + "&O=" + oname)
+    }
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content%}
+
+<div id="scores">
+<h2>Scores:</h2>
+<table id="scores_table">
+    <tr>
+        <td>Player X</td>
+        <td>Player O</td>
+        <td>Winner</td>
+        <td>Game Started At</td>
+        <td>Duration</td>
+        <td>Multiplayer Game</td>
+    </tr>
+    {% for record in history %}
+    <tr>
+        <td>
+          {{ record.xname }}
+        </td>
+        <td>
+          {{ record.oname }}
+        </td>
+        <td>
+           {{ record.winner}}
+        </td>
+        <td>
+            {{ record.createdAt}}
+        </td>
+        <td>
+            {{ record.duration}}
+        </td>
+        <td>
+            {{ record.multiGame}}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+<div id="buttons">
+    <a href="/"><button class="button">Play!</button></a>
+</div>
+
+
+{% endblock %}

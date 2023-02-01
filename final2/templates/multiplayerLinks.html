@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content%}
+
+<div id="links">
+<h2>Links:</h2>
+<p>
+  <label for="oTitle">Copy and send to your partner,  <img src="https://freetictactoe.com/images/mark-o.png"/> Player: </label>
+  <a id="oLink" href="#" onclick="copyToClipboard('#oLink')">{{oLink}} </a>
+</p>
+<label for="xTitle"><img src="https://freetictactoe.com/images/mark-x.png"/> Player: </label>
+
+<div id="buttons">
+  <a id="xLink" href="{{xLink}}"><button class="button">Play!</button></a>
+</div>
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+window.onload = function() {
+    var baseURL =  window.location.origin
+    var currentOLink = document.getElementById("oLink").innerHTML
+    document.getElementById("oLink").innerHTML = baseURL + currentOLink
+};
+
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+  alert("Link is copied")
+}
+
+
+</script>
+
+{% endblock %}

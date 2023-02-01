@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}"/>
+</head>
+<body>
+    <div id="header">
+         Tic Tac Toe Game
+    </div>
+    <div id="content">
+        {%block content%}{% endblock %}
+    </div>
+
+</body>
+</html>

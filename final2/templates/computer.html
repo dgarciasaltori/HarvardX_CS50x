@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div id = "computer">
+<h2>Against computer Game!</h2>
+
+{{xname}} VS <div class="nobreak" id="oname">{{ oname }}</div>
+<div id="turn">
+
+It's <div class ="nobreak" id="player">{{player}}</div>'s Turn!
+
+{% if turn == 'X' %}
+<img class="symbol" src="https://freetictactoe.com/images/mark-x.png"/>
+{% else %}
+<img class="symbol" src="https://freetictactoe.com/images/mark-o.png"/>
+{% endif %}
+</div>
+<table id="main_game_table">
+    {% for i in range(3) %}
+    <tr>
+        {% for j in range(3) %}
+        <td>
+            {% if game[i][j] == "X" %}
+                <img src="https://freetictactoe.com/images/mark-x.png"/>
+            {% elif game[i][j] == "O" %}
+                <img src="https://freetictactoe.com/images/mark-o.png"/>
+            {% else %}
+                {% if turn == "X" %}
+                    <a href="{{ url_for('play', row=i, col=j) }}">Play {{ turn }} here.</a>
+                {% endif %}
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</div>
+</table>
+
+<div id="buttons">
+  <a href="/computerMove"><button class="button">Help!</button></a>
+  <a href="/reset"><button class="button">Reset</button></a>
+</div>
+
+<script>
+window.onload = function() {
+    if((document.getElementById("oname").innerHTML === document.getElementById("player").innerHTML))
+        window.location.assign("/computerMove")
+    }
+
+</script>
+{% endblock %}
